@@ -13,8 +13,7 @@ This project was built as a Java Full Stack Dynamic Web Project using:
 ✅ Simple and responsive UI for desktop users
 
 💡 Working on this project gave me hands-on experience in integrating frontend, backend, and database while building a complete Java web application.
-![Uploading h-pay2.png…]()
 
 
-Uploading chrome_mz7COdJLBC.mp4…
+
 
