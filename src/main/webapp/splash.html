@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPay UPI - Welcome</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f6f8fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .splash-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 48px 36px;
+            text-align: center;
+            width: 350px;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo svg {
+            width: 100%;
+            height: 100%;
+        }
+        .app-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b3b3b;
+            margin-bottom: 8px;
+        }
+        .tagline {
+            color: #6c757d;
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+        .spinner {
+            margin: 0 auto 18px;
+            width: 32px;
+            height: 32px;
+            border: 4px solid #e3e3e3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 18px;
+        }
+        .continue-btn {
+            margin-top: 18px;
+            padding: 12px 0;
+            width: 100%;
+            background: #667eea;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+            transition: background 0.2s;
+        }
+        .continue-btn:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <div class="logo">
+            <img src="images/h-pay.png" alt="H-Pay Logo" style="width:64px;height:64px;border-radius:12px;">
+        </div>
+        <div class="app-title">H-Pay UPI</div>
+        <div class="tagline">Fast, Secure &amp; Simple UPI Transactions</div>
+        <div class="spinner"></div>
+        <div class="loading-text">Connecting to UPI network...</div>
+        
+    </div>
+    <script>
+        sessionStorage.setItem('fromSplash', 'true');
+        setTimeout(function() {
+            window.location.href = 'login page.html';
+        }, 3500);
+        document.querySelector('.continue-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.setItem('fromSplash', 'true');
+            window.location.href = 'login page.html';
+        });
+    </script>
+</body>
+</html>

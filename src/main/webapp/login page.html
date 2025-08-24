@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPay - Secure Login</title>
+    <style>
+        body {
+            height: 100vh;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #43e97b 100%);
+            overflow: hidden;
+        }
+        .logo {
+            margin-top: 8px;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 12px rgba(102,126,234,0.10);
+            padding: 8px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .login-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.10);
+            padding: 18px 18px 12px 18px;
+            width: 320px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .tagline {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .welcome-text h2 {
+            font-size: 1.25rem;
+            color: #3b3b3b;
+            margin-bottom: 2px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .welcome-text p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            color: #3b3b3b;
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 32px 8px 10px;
+            border: 1px solid #e3e3e3;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #f6f8fa;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 4px rgba(102,126,234,0.03);
+            display: block;
+        }
+        .input-wrapper input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px #667eea33;
+            outline: none;
+        }
+        .input-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #667eea;
+        }
+        .submit-section {
+            margin-top: 8px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px 0;
+            background: linear-gradient(90deg, #667eea 0%, #43e97b 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(102,126,234,0.06);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #43e97b 0%, #667eea 100%);
+            transform: translateY(-1px) scale(1.01);
+        }
+        .form-footer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .form-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        .security-info {
+            margin-bottom: 4px;
+        }
+        .security-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #667eea;
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="images/h-pay.png" alt="H-Pay Logo">
+    </div>
+    <div class="login-container">
+        <div class="tagline">Secure Digital Payments</div>
+        <div class="welcome-text">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your account to continue</p>
+        </div>
+        <form action="callingservlet" method="post" id="loginForm">
+            <div class="form-group">
+                <label for="userupi">UPI ID</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="userupi"
+                        name="userupi" 
+                        placeholder="Enter your UPI ID (e.g., user@bank)"
+                        required
+                    >
+                    <span class="input-icon">💳</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phonenumber">Phone Number</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="tel" 
+                        id="phonenumber"
+                        name="phonenumber" 
+                        placeholder="Enter your phone number"
+                        pattern="[0-9]{10}"
+                        required
+                    >
+                    <span class="input-icon">📱</span>
+                </div>
+            </div>
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Sign In
+                </button>
+            </div>
+            <div class="form-footer">
+                New to HPay? <a href="register.html">Create New Account</a>
+            </div>
+        </form>
+        <div class="form-footer">
+            <div class="security-info">
+                <div class="security-badge">256-bit SSL Encrypted</div>
+            </div>
+            Having trouble? <a href="support.html">Contact Support</a><br><br>
+            Want to Check the Transaction of HPay ?<a href="idcheck.jsp"><br>
+            Check Here</a>
+        </div>
+    </div>
+    <script>
+        // Check if page is being reloaded and redirect to splash screen
+       if (performance.navigation.type === 1) {
+           // Page is being reloaded
+           window.location.href = 'splash.html';
+       }
+
+       // Form submission with loading state
+       document.getElementById('loginForm').addEventListener('submit', function(e) {
+           const submitBtn = document.getElementById('submitBtn');
+           submitBtn.classList.add('loading');
+           submitBtn.textContent = '';
+           
+           // Simulate loading (remove this in production)
+           setTimeout(() => {
+               // Form will submit normally
+           }, 1000);
+       });
+
+       // Input focus animations
+       const inputs = document.querySelectorAll('input');
+       inputs.forEach(input => {
+           input.addEventListener('focus', function() {
+               this.parentElement.classList.add('focused');
+           });
+           
+           input.addEventListener('blur', function() {
+               this.parentElement.classList.remove('focused');
+           });
+       });
+
+       // Handle browser back/forward buttons
+       window.addEventListener('popstate', function() {
+           window.location.href = 'splash.html';
+       });
+
+       // Prevent direct access to login page
+       if (document.referrer === '' && !sessionStorage.getItem('fromSplash')) {
+           window.location.href = 'splash.html';
+       }
+
+       // Set flag when coming from splash
+       if (document.referrer.includes('splash.html')) {
+           sessionStorage.setItem('fromSplash', 'true');
+       }
+    </script>
+</body>
+</html>

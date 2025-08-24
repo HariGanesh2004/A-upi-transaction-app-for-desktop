@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPay - Register</title>
+    <style>
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            overflow-y: auto;
+        }
+        .logo {
+            margin-top: 8px;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 12px rgba(67,233,123,0.10);
+            padding: 8px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .register-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px 0 rgba(67,233,123,0.10);
+            padding: 18px 18px 12px 18px;
+            width: 320px;
+            max-width: 95vw;
+            text-align: center;
+            overflow: hidden;
+        }
+        .tagline {
+            color: #43e97b;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .welcome-text h2 {
+            font-size: 1.25rem;
+            color: #222;
+            margin-bottom: 2px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .welcome-text p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            color: #222;
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 32px 8px 10px;
+            border: 1px solid #e3e3e3;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #f6f8fa;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 4px rgba(67,233,123,0.03);
+            display: block;
+        }
+        .input-wrapper input:focus {
+            border-color: #43e97b;
+            box-shadow: 0 0 0 2px #43e97b33;
+            outline: none;
+        }
+        .input-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #43e97b;
+        }
+        .submit-section {
+            margin-top: 8px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px 0;
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(67,233,123,0.06);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+            transform: translateY(-1px) scale(1.01);
+        }
+        .form-footer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .form-footer a {
+            color: #43e97b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        .security-info {
+            margin-bottom: 4px;
+        }
+        .security-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #43e97b;
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 480px) {
+            .logo {
+                width: 44px;
+                height: 44px;
+                padding: 4px;
+                margin-bottom: 8px;
+            }
+            .logo img {
+                width: 28px;
+                height: 28px;
+                border-radius: 6px;
+            }
+            .register-container {
+                width: 98vw;
+                padding: 10px 4vw 8px 4vw;
+                border-radius: 12px;
+            }
+            .welcome-text h2 {
+                font-size: 1.05rem;
+            }
+            .form-group label,
+            .input-wrapper input {
+                font-size: 0.88rem;
+            }
+            .submit-btn {
+                font-size: 0.95rem;
+                padding: 8px 0;
+            }
+            .security-badge {
+                font-size: 0.8rem;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="images/h-pay.png" alt="H-Pay Logo">
+    </div>
+    <div class="register-container">
+        <div class="tagline">Fast &amp; Secure Transactions</div>
+        <div class="welcome-text">
+            <h2>Create Your Account</h2>
+            <p>Register to start using HPay</p>
+        </div>
+        <form action="registerservlet" method="post" id="registerForm" autocomplete="off">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <span class="input-icon">👤</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email"> E-mail</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" placeholder="Enter your E-Mail Id (e.g.hpay@gmail.com)" required>
+                    <span class="input-icon">📱</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phonenumber">Phone Number</label>
+                <div class="input-wrapper">
+                    <input type="tel" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                    <span class="input-icon">📱</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bank">Bank</label>
+                <div class="input-wrapper">
+                    <select name="bank" id="bank">
+                    	<option value="">--Select Bank--</option>
+			            <option value="HDFC">HDFC Bank</option>
+			            <option value="Indian">Indian Bank</option>
+			            <option value="Union">Union Bank</option>
+			            <option value="SBI">SBI</option>
+			            <option value="IOB">IOB</option>
+			        </select>
+                    <span class="input-icon">📱</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="upiid">UPI ID</label>
+                <div class="input-wrapper">
+                    <input type="text" id="upiid" name="upiid" placeholder="Enter your UPI ID (e.g., user@bank)" required>
+                    <span class="input-icon">💳</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="newpin">Create New UPI PIN</label>
+                <div class="input-wrapper">
+                    <input type="password" id="newpin" name="newpin" placeholder="Enter new UPI PIN" pattern="[0-9]{4,6}" minlength="4" maxlength="6" required>
+                    <span class="input-icon">🔑</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmpin">Confirm UPI PIN</label>
+                <div class="input-wrapper">
+                    <input type="password" id="confirmpin" name="confirmpin" placeholder="Confirm UPI PIN" pattern="[0-9]{4,6}" minlength="4" maxlength="6" required>
+                    <span class="input-icon">🔒</span>
+                </div>
+            </div>
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="registerBtn">Register</button>
+            </div>
+        </form>
+        <div class="form-footer">
+            <div class="security-info">
+                <div class="security-badge">256-bit SSL Encrypted</div>
+            </div>
+            <div class="help-text">
+                Already have an account? <a href="login page.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // PIN match validation
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const pin = document.getElementById('newpin').value;
+            const confirmPin = document.getElementById('confirmpin').value;
+            if (pin !== confirmPin) {
+                e.preventDefault();
+                alert('UPI PIN and Confirm UPI PIN do not match.');
+                return false;
+            }
+        });
+        // Input focus animations
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+        let currentBank = "";
+
+        function generateUpiId() {
+            let phone = document.getElementById("phonenumber").value.trim();
+            let bank = document.getElementById("bank").value.trim();
+
+            if (bank !== "") {
+                currentBank = bank.replace(/\s+/g, "").toLowerCase(); // normalize bank
+            } else {
+                currentBank = "";
+            }
+
+            if (phone.length === 10 && currentBank !== "") {
+                document.getElementById("upiid").value = phone + "@" + currentBank;
+            } else {
+                document.getElementById("upiid").value = "";
+            }
+        }
+
+        // Prevent editing after @
+        document.getElementById("upiid").addEventListener("input", function () {
+            if (currentBank !== "") {
+                let value = this.value;
+                let parts = value.split("@");
+
+                // Always keep right side fixed
+                let leftPart = parts[0]; 
+                this.value = leftPart + "@" + currentBank;
+            }
+        });
+
+        // Attach listeners
+        document.getElementById("phonenumber").addEventListener("input", generateUpiId);
+        document.getElementById("bank").addEventListener("change", generateUpiId);
+    </script>
+</body>
+</html>
